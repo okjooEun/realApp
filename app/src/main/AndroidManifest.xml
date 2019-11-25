@@ -23,6 +23,7 @@
             android:screenOrientation="landscape"></activity>
         <activity android:name=".KitchenActivity"
             android:screenOrientation="landscape"></activity>
+        <activity android:name=".menuDBActivity"></activity>
     </application>
 
 </manifest>
