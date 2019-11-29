@@ -19,8 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TalkActivity"
-            android:screenOrientation="landscape"></activity>
         <activity android:name=".KitchenActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".menuDBActivity"></activity>
