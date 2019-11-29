@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity  {
 
     ImageView imgCalender, imgTime, guest;
@@ -68,11 +70,10 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void onClick(View v) {
-//        txttalk.setVisibility(View.VISIBLE);
-//        linbtn.setVisibility(View.GONE);
 
         Intent intent = new Intent(MainActivity.this, TalkActivity.class);
         startActivity(intent);
+
 
     }
 }

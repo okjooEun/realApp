@@ -54,11 +54,11 @@
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/txttalk"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="대화창 대화창"
             android:gravity="center"
             android:textSize="90dp" />
 

@@ -1,21 +1,23 @@
 package com.example.dbtest;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Random;
+
 
 public class TalkActivity extends AppCompatActivity {
     ImageView imgCalender, imgTime, guest;
     Button btnSetting, btnKitchen;
     TextView txttalk;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,6 @@ public class TalkActivity extends AppCompatActivity {
 
         btnSetting = (Button) findViewById(R.id.btnSetting);
         btnKitchen = (Button) findViewById(R.id.btnKitchen);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk);
@@ -53,4 +54,5 @@ public class TalkActivity extends AppCompatActivity {
         Intent intent = new Intent(TalkActivity.this, KitchenActivity.class);
         startActivity(intent);
     }
+
 }
