@@ -4,34 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.media.Image;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView imgCalender, imgTime, guest;
-    Button btnSetting, btnSelect1, btnSelect2, btnSelect3,goKitchen;
+    Button btnSetting, btnSelect1, btnSelect2, btnSelect3, goKitchen;
     LinearLayout linBtn;
     TextView txtTalk;
     FrameLayout frame;
+
+    Random rand = new Random();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
         btnSelect2 = (Button) findViewById(R.id.btnSelect2);
         btnSelect3 = (Button) findViewById(R.id.btnSelect3);
         goKitchen = (Button) findViewById(R.id.goKitchen);
+        guest = (ImageView) findViewById(R.id.guest);
 
-       frame.setOnClickListener(new View.OnClickListener() {
+        frame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 txtTalk.setVisibility(View.INVISIBLE);
@@ -78,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
         btnSelect1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               linBtn.setVisibility(View.INVISIBLE);
-               txtTalk.setVisibility(View.VISIBLE);
-               goKitchen.setVisibility(View.VISIBLE);
+                linBtn.setVisibility(View.INVISIBLE);
+                txtTalk.setVisibility(View.VISIBLE);
+                goKitchen.setVisibility(View.VISIBLE);
             }
         });
         btnSelect2.setOnClickListener(new View.OnClickListener() {
@@ -107,5 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+            int rnd = rand.nextInt(3);
+            String imgName = "guest" + rnd;
+            Resources res = getResources();
+            int id = res.getIdentifier(imgName, "drawable", getPackageName());
+
+            guest.setImageResource(id);
     }
 }

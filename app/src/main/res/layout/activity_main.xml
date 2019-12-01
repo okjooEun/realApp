@@ -42,8 +42,7 @@
         android:id="@+id/guest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/guest1" />
+        android:layout_weight="1" />
 
     <FrameLayout
         android:id="@+id/frame"
