@@ -4,20 +4,20 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MakesuccessActivity extends AppCompatActivity {
+public class DayActivity extends AppCompatActivity {
 
     RelativeLayout rel;
+    TextView textView3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_makesuccess);
-
+        setContentView(R.layout.activity_day);
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
 
@@ -34,11 +34,27 @@ public class MakesuccessActivity extends AppCompatActivity {
         //소프트키(네비게이션바) 없애기 끝
 
         rel = (RelativeLayout) findViewById(R.id.rel);
+        textView3 =(TextView)findViewById(R.id.textView3);
+
+        int count = 0;
+
+        switch (count){
+            case 0:
+                textView3.setText("4일차");
+                count++;
+                break;
+
+            case 1:
+                Intent intent = getIntent();
+                textView3.setText(intent.getStringExtra("day"));
+                break;
+        }
+
 
         rel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MakesuccessActivity.this, MainActivity.class);
+                Intent intent = new Intent(DayActivity.this, NewMenuActivity.class);
                 startActivity(intent);
             }
         });

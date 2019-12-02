@@ -3,26 +3,17 @@
     android:id="@+id/rel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#000000"
     android:clickable="true"
     android:orientation="vertical">
 
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/pfstardust"
-        android:text="제조 성공!"
-        android:textSize="50dp" />
-
-    <ImageView
-        android:id="@+id/menu"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/menu1" />
-
+        android:fontFamily="@font/pfstardust"
+        android:text="4일차"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp" />
 </RelativeLayout>

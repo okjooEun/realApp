@@ -13,17 +13,22 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".KitchenActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".menuDBActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".MakesuccessActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".DayActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NewMenuActivity"
             android:screenOrientation="landscape"/>
     </application>
 

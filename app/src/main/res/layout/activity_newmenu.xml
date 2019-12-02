@@ -3,7 +3,7 @@
     android:id="@+id/rel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#000000"
     android:clickable="true"
     android:orientation="vertical">
 
@@ -15,7 +15,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/pfstardust"
-        android:text="제조 성공!"
+        android:text="메뉴 변경!"
+        android:textColor="#FFFFFF"
         android:textSize="50dp" />
 
     <ImageView
@@ -24,5 +25,18 @@
         android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:src="@drawable/menu1" />
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/menu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-60dp"
+        android:fontFamily="@font/pfstardust"
+        android:text="크리스마스 에디션 초코라떼 -> 초코라떼 변경!"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp" />
 
 </RelativeLayout>

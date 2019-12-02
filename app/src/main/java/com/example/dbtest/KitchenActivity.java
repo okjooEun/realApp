@@ -67,42 +67,42 @@ public class KitchenActivity extends AppCompatActivity {
         iceCup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectCup.setText(iceCup.getText().toString());
+                selectCup.setText("찬컵");
             }
         });
 
         hotCup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectCup.setText(hotCup.getText().toString());
+                selectCup.setText("뜨거운컵");
             }
         });
 
         iceWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText(iceWater.getText().toString());
+                selectWM.setText("차가운 물");
             }
         });
 
         hotWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText(hotWater.getText().toString());
+                selectWM.setText("뜨거운 물");
             }
         });
 
         iceMilk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText(iceMilk.getText().toString());
+                selectWM.setText("차가운 우유");
             }
         });
 
         hotMilk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText(hotMilk.getText().toString());
+                selectWM.setText("뜨거운 우유");
             }
         });
 
@@ -121,7 +121,7 @@ public class KitchenActivity extends AppCompatActivity {
         blender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectBlen.setText(blender.getText().toString());
+                selectBlen.setText("블랜딩");
             }
         });
 

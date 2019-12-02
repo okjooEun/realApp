@@ -4,20 +4,19 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MakesuccessActivity extends AppCompatActivity {
+
+public class NewMenuActivity extends AppCompatActivity{
 
     RelativeLayout rel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_makesuccess);
-
+        setContentView(R.layout.activity_newmenu);
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
 
@@ -38,9 +37,9 @@ public class MakesuccessActivity extends AppCompatActivity {
         rel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MakesuccessActivity.this, MainActivity.class);
+                Intent intent = new Intent(NewMenuActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
-}
+    }
