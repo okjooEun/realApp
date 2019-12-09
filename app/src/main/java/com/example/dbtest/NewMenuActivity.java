@@ -1,9 +1,11 @@
 package com.example.dbtest;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NewMenuActivity extends AppCompatActivity{
 
     RelativeLayout rel;
+    ImageView setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,15 @@ public class NewMenuActivity extends AppCompatActivity{
         //소프트키(네비게이션바) 없애기 끝
 
         rel = (RelativeLayout) findViewById(R.id.rel);
+        setting =(ImageView) findViewById(R.id.setting);
+
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewMenuActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         rel.setOnClickListener(new View.OnClickListener() {
             @Override

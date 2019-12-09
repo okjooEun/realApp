@@ -33,7 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".SettingActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".RecipebookActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

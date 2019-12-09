@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/settingview"
+        android:id="@+id/setting"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:clickable="true"

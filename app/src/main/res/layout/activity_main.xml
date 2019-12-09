@@ -22,94 +22,129 @@
             app:srcCompat="@drawable/calendar" />
 
         <ImageView
-            android:id="@+id/settingview"
+            android:id="@+id/setting"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="680dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="635dp"
             android:clickable="true"
             app:srcCompat="@drawable/setting" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/guest"
-        android:layout_width="match_parent"
-        android:layout_height="196dp" />
 
     <FrameLayout
-        android:id="@+id/frame"
-        android:background="@drawable/speech"
-        android:layout_width="559dp"
-        android:layout_height="117dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="20dp">
-
-        <TextView
-            android:id="@+id/txtTalk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/pfstardust"
-            android:textSize="20dp"/>
-
-        <TextView
-            android:id="@+id/txtTalk2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
-            android:fontFamily="@font/pfstardust"
-            android:visibility="invisible"
-            android:textSize="20dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical"
-            android:visibility="invisible">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnSelect1"
+            <ImageView
+                android:id="@+id/guest"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/pfstardust"
-                android:background="@drawable/button"
-                android:text="Button" />
+                android:layout_height="196dp" />
 
-            <Button
-                android:id="@+id/btnSelect2"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/button"
-                android:fontFamily="@font/pfstardust"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/btnSelect3"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/button"
-                android:fontFamily="@font/pfstardust"
-                android:text="Button" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/goKitchen"
-            android:layout_width="50dp"
-            android:layout_height="32dp"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="5dp"
-            android:background="#FFDDA6"
-            android:text="주방"
-            android:fontFamily="@font/pfstardust"
-            android:visibility="invisible"></Button>
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="559dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/speech">
+
+            <TextView
+                android:id="@+id/guestname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:layout_marginLeft="45dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/pfstardust"
+                android:layout_marginTop="6dp"
+                android:text="젊은 여성" />
+
+            <TextView
+                android:id="@+id/txtTalk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="17dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/pfstardust"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/txtTalk2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/pfstardust"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/linBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <Button
+                    android:id="@+id/btnSelect1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/button"
+                    android:fontFamily="@font/pfstardust"
+                    android:textColor="#000000"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/btnSelect2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/button"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/pfstardust"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/btnSelect3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/button"
+                    android:fontFamily="@font/pfstardust"
+                    android:textColor="#000000"
+                    android:text="Button" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/goKitchen"
+                android:layout_width="50dp"
+                android:layout_height="32dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="#FFDDA6"
+                android:fontFamily="@font/pfstardust"
+                android:textColor="#000000"
+                android:text="주방"
+                android:visibility="invisible"></Button>
+        </FrameLayout>
+
     </FrameLayout>
+
+
 </LinearLayout>

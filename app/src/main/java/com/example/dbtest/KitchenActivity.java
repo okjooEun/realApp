@@ -1,6 +1,8 @@
 package com.example.dbtest;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +17,10 @@ import org.w3c.dom.Text;
 
 public class KitchenActivity extends AppCompatActivity {
 
-    Button  iceCup, iceWater, iceMilk,hotCup, hotWater, hotMilk, blender, recipeBook, btnMake;
-    Button ing[] = new Button[8];
-    Integer[] Rid_button = {R.id.ing0, R.id.ing1, R.id.ing2, R.id.ing3, R.id.ing4, R.id.ing5, R.id.ing6, R.id.ing7, R.id.ing8};
-    TextView selectCup, selectWM, selectIng,selectBlen;
-    ImageView trash;
+    Button iceCup, iceWater, iceMilk,hotCup, hotWater, hotMilk, blender, recipeBook, btnMake,trash;
+   ImageView ing[] = new ImageView[8];
+    Integer[] Rid_ImageVIew = {R.id.ing0, R.id.ing1, R.id.ing2, R.id.ing3, R.id.ing4, R.id.ing5, R.id.ing6, R.id.ing7, R.id.ing8};
+    ImageView selectCup, selectWM, selectIng,selectBlen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class KitchenActivity extends AppCompatActivity {
 
 
         for(int i = 0; i<ing.length; i++){
-            ing[i] = (Button) findViewById(Rid_button[i]);
+            ing[i] = (ImageView) findViewById(Rid_ImageVIew[i]);
         }
 
         iceCup = (Button) findViewById(R.id.iceCup);
@@ -57,52 +58,72 @@ public class KitchenActivity extends AppCompatActivity {
         recipeBook = (Button) findViewById(R.id.recipeBook);
         btnMake = (Button) findViewById(R.id.btnMake);
 
-        selectCup = (TextView) findViewById(R.id.selectCup);
-        selectWM = (TextView) findViewById(R.id.selectWM);
-        selectBlen = (TextView) findViewById(R.id.selectBlen);
-        selectIng = (TextView) findViewById(R.id.selectIng);
+        selectCup = (ImageView) findViewById(R.id.selectCup);
+        selectWM = (ImageView) findViewById(R.id.selectWM);
+        selectBlen = (ImageView) findViewById(R.id.selectBlen);
+        selectIng = (ImageView) findViewById(R.id.selectIng);
 
-        trash = (ImageView) findViewById(R.id.trash);
+
+        trash = (Button) findViewById(R.id.trash);
+
 
         iceCup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectCup.setText("찬컵");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.icecup);
+                selectCup.setImageDrawable(drawable);
             }
         });
 
         hotCup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectCup.setText("뜨거운컵");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.hotcup);
+                selectCup.setImageDrawable(drawable);
             }
         });
 
         iceWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText("차가운 물");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.ice_water);
+                selectWM.setImageDrawable(drawable);
             }
         });
 
         hotWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText("뜨거운 물");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.hotwater);
+                selectWM.setImageDrawable(drawable);
             }
         });
 
         iceMilk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText("차가운 우유");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.ice_milk);
+                selectWM.setImageDrawable(drawable);
             }
         });
 
         hotMilk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectWM.setText("뜨거운 우유");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.hotmilk);
+                selectWM.setImageDrawable(drawable);
             }
         });
 
@@ -112,8 +133,10 @@ public class KitchenActivity extends AppCompatActivity {
             ing[INDEX].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Resources res = getResources();
 
-                    selectIng.setText(ing[INDEX].getText().toString());
+                    final Drawable drawable = res.getDrawable(R.drawable.ice);
+                    selectIng.setImageDrawable(drawable);
                 }
             });
         }
@@ -121,27 +144,29 @@ public class KitchenActivity extends AppCompatActivity {
         blender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectBlen.setText("블랜딩");
+                Resources res = getResources();
+
+                final Drawable drawable = res.getDrawable(R.drawable.miniblender);
+                selectBlen.setImageDrawable(drawable);
             }
         });
 
         trash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectCup.setText("");
-                selectWM.setText("");
-                selectIng.setText("");
-                selectBlen.setText("");
+                selectCup.setImageDrawable(null);
+                selectWM.setImageDrawable(null);
+                selectIng.setImageDrawable(null);
+                selectBlen.setImageDrawable(null);
             }
         });
 
         recipeBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(KitchenActivity.this);
 
-                builder.setMessage("레시피북 내용");
-                builder.show();
+                        Intent intent = new Intent(KitchenActivity.this, RecipebookActivity.class);
+                        startActivity(intent);
             }
         });
 

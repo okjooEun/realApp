@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,10 +33,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imgCalender, imgTime, guest;
+    ImageView setting, guest;
     Button btnSetting, btnSelect1, btnSelect2, btnSelect3, goKitchen;
     LinearLayout linBtn;
-    TextView txtTalk, txtTalk2;
+    TextView txtTalk, txtTalk2, guestname;
     FrameLayout frame;
 
     Random rand = new Random();
@@ -61,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOption);
         //소프트키(네비게이션바) 없애기 끝
 
-//        imgCalender = (ImageView) findViewById(R.id.imgCalendar);
-//        imgTime = (ImageView) findViewById(R.id.imgTime);
+        setting = (ImageView) findViewById(R.id.setting);
         guest = (ImageView) findViewById(R.id.guest);
 
         linBtn = (LinearLayout) findViewById(R.id.linBtn);
@@ -70,20 +70,30 @@ public class MainActivity extends AppCompatActivity {
 
         txtTalk = (TextView) findViewById(R.id.txtTalk);
         txtTalk2 = (TextView) findViewById(R.id.txtTalk2);
-//
-//        btnSetting = (Button) findViewById(R.id.btnSetting);
+        guestname = (TextView) findViewById(R.id.guestname);
+
         btnSelect1 = (Button) findViewById(R.id.btnSelect1);
         btnSelect2 = (Button) findViewById(R.id.btnSelect2);
         btnSelect3 = (Button) findViewById(R.id.btnSelect3);
         goKitchen = (Button) findViewById(R.id.goKitchen);
         guest = (ImageView) findViewById(R.id.guest);
+        Resources res1 = getResources();
 
+        final Drawable drawable = res1.getDrawable(R.drawable.speech);
 
         String menuarray[] = getResources().getStringArray(R.array.MENU);
         final String blackarray[] = getResources().getStringArray(R.array.BLACK);
         int i = rand.nextInt(9);
         int j = rand.nextInt(4);
         int r = rand.nextInt(2);
+
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         for (int count = 0; count < 8; count++) {
             switch (r) {
@@ -95,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     txtTalk.setText((blackarray[j]));
                     if (j == 0) {
-                        btnSelect1.setText("손님, 죄송하지만 저희 매장에는 없는 메뉴입니다. 단 메뉴를 찾으신다면 초코 스무디로 준비해드릴까요?");
+                        btnSelect1.setText("손님, 죄송하지만 저희 매장에는 없는 메뉴입니다.\n 단 메뉴를 찾으신다면 초코 스무디로 준비해드릴까요?");
                         btnSelect2.setText("그런 메뉴는 없습니다. 다른 걸로 주문하세요.");
                         btnSelect3.setText("그런 거 시키시려면 별다방으로 가세요");
                     }
@@ -111,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (j == 3) {
                         btnSelect1.setText("할인이나 적립은 둘 중 하나만 선택하세요.");
-                        btnSelect2.setText("저희 매장은 할인과 적립 동시 적용 가능 매장이 아니어서요. 둘 중 하나만 이용 가능하신데, 어떤 걸로 하시겠어요?");
+                        btnSelect2.setText("저희 매장은 할인과 적립 동시 적용 가능 매장이 아니어서요.\n 둘 중 하나만 이용 가능하신데, 어떤 걸로 하시겠어요?");
                         btnSelect3.setText("(사장님께 전화해본다.)");
                     }
                     break;
@@ -124,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
                     txtTalk.setVisibility(View.GONE);
                     linBtn.setVisibility(View.VISIBLE);
+                    guestname.setVisibility(View.INVISIBLE);
+                    frame.setClickable(false);
+                    frame.setBackground(null);
+
                 }
             });
 
@@ -133,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
                     linBtn.setVisibility(View.INVISIBLE);
                     txtTalk2.setVisibility(View.VISIBLE);
                     goKitchen.setVisibility(View.VISIBLE);
+                    guestname.setVisibility(View.VISIBLE);
+                    frame.setClickable(true);
+                    frame.setBackground(drawable);
 
                 }
             });
@@ -144,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
                     linBtn.setVisibility(View.INVISIBLE);
                     txtTalk2.setVisibility(View.VISIBLE);
                     goKitchen.setVisibility(View.VISIBLE);
+                    guestname.setVisibility(View.VISIBLE);
+                    frame.setClickable(true);
+                    frame.setBackground(drawable);
                 }
             });
 
@@ -153,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
                     linBtn.setVisibility(View.INVISIBLE);
                     txtTalk2.setVisibility(View.VISIBLE);
                     goKitchen.setVisibility(View.VISIBLE);
+                    guestname.setVisibility(View.VISIBLE);
+                    frame.setClickable(true);
+                    frame.setBackground(drawable);
 
                 }
             });

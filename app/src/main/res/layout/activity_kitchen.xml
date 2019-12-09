@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="274dp"
+        android:layout_height="300dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -35,15 +35,15 @@
                 android:background="#00FFFFFF" />
 
             <Button
-                android:id="@+id/hotWater"
+                android:id="@+id/iceWater"
                 android:layout_width="45dp"
                 android:layout_height="38dp"
                 android:layout_marginBottom="5dp"
-                android:layout_toRightOf="@+id/iceWater"
+                android:layout_toRightOf="@+id/hotWater"
                 android:background="#00FFFFFF" />
 
             <Button
-                android:id="@+id/iceWater"
+                android:id="@+id/hotWater"
                 android:layout_width="40dp"
                 android:layout_height="38dp"
                 android:layout_marginLeft="20dp"
@@ -51,103 +51,120 @@
                 android:background="#00FFFFFF" />
 
             <Button
-                android:id="@+id/iceMilk"
-                android:layout_width="40dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="25dp"
-                android:layout_toRightOf="@+id/hotWater"
-                android:background="#00FFFFFF" />
-
-            <Button
                 android:id="@+id/hotMilk"
                 android:layout_width="45dp"
                 android:layout_height="38dp"
-                android:layout_toRightOf="@+id/iceMilk"
+                android:layout_marginLeft="23dp"
+                android:layout_toRightOf="@+id/iceWater"
                 android:background="#00FFFFFF" />
+            <Button
+                android:id="@+id/iceMilk"
+                android:layout_width="40dp"
+                android:layout_height="38dp"
+                android:layout_toRightOf="@+id/hotMilk"
+                android:background="#00FFFFFF" />
+
 
         </RelativeLayout>
 
         <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
+            android:layout_width="185dp"
+            android:layout_height="170dp"
             android:layout_marginTop="120dp">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
+                <ImageView
                     android:id="@+id/ing0"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
+                    android:layout_height="50dp"
+                    android:src ="@drawable/ing0"
+                    />
 
-                <Button
+                <ImageView
                     android:id="@+id/ing1"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="2" />
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src ="@drawable/ing1" />
 
-                <Button
+                <ImageView
                     android:id="@+id/ing2"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="3" />
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src ="@drawable/ing2" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
 
-                <Button
+                <ImageView
                     android:id="@+id/ing3"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="4" />
+                    android:layout_height="50dp"
+                    android:src ="@drawable/ing3" />
 
-                <Button
+                <ImageView
                     android:id="@+id/ing4"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="5" />
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src ="@drawable/ing4" />
 
-                <Button
+                <ImageView
                     android:id="@+id/ing5"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="6" />
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src ="@drawable/ing5" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
 
-                <Button
+                <ImageView
                     android:id="@+id/ing6"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="7" />
+                    android:layout_height="50dp"
+                    android:src ="@drawable/ing6" />
 
-                <Button
+                <ImageView
                     android:id="@+id/ing7"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="8" />
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src ="@drawable/ing7" />
 
-                <Button
+                <ImageView
                     android:id="@+id/ing8"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="9" />
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src ="@drawable/ing8" />
             </TableRow>
 
         </TableLayout>
 
         <Button
             android:id="@+id/blender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom"
+            android:background= "#00FFFFFF"
+            android:layout_marginLeft="25dp" />
+
+        <Button
+            android:id="@+id/trash"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:background= "#00FFFFFF"
             android:layout_marginLeft="25dp" />
@@ -155,7 +172,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 
@@ -163,70 +180,53 @@
             android:id="@+id/recipeBook"
             android:layout_width="99dp"
             android:layout_height="69dp"
-            android:background= "#00FFFFFF" />
+            android:background="#00FFFFFF" />
 
         <LinearLayout
-            android:layout_width="566dp"
+            android:layout_width="530dp"
             android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:id="@+id/selectCup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_gravity="bottom"
-                android:textSize="30sp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="150dp" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/selectWM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="bottom"
-                android:textSize="30sp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <ImageView
                 android:id="@+id/selectIng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="bottom"
-                android:textSize="30sp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/selectBlen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:layout_gravity="bottom"
-                android:textSize="30sp" />
+ />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/trash"
-            android:layout_width="124dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:src="@drawable/ic_trash"
-            android:visibility="visible" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnMake"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="45dp"
-            android:background= "#00FFFFFF" />
+            android:layout_width="140dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/complete" />
 
     </LinearLayout>
+
 </LinearLayout>
 
 

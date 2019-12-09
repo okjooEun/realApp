@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ public class DayActivity extends AppCompatActivity {
 
     RelativeLayout rel;
     TextView textView3;
+    ImageView setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class DayActivity extends AppCompatActivity {
 
         rel = (RelativeLayout) findViewById(R.id.rel);
         textView3 =(TextView)findViewById(R.id.textView3);
+        setting =(ImageView) findViewById(R.id.setting);
 
         int count = 0;
 
@@ -50,6 +53,13 @@ public class DayActivity extends AppCompatActivity {
                 break;
         }
 
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DayActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         rel.setOnClickListener(new View.OnClickListener() {
             @Override
