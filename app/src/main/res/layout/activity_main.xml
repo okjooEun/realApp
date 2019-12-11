@@ -14,20 +14,39 @@
         android:layout_height="80dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/calenderview"
-            android:layout_width="102dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:srcCompat="@drawable/calendar" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/setting"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="635dp"
-            android:clickable="true"
-            app:srcCompat="@drawable/setting" />
+            <ImageView
+                android:id="@+id/calenderview"
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/calendar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="35dp"
+                android:text="26"
+                android:fontFamily="@font/pfstardust"
+                android:textColor="@android:color/black"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:id="@+id/setting"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="730dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/setting" />
+
+        </FrameLayout>
+
     </LinearLayout>
 
 
@@ -64,8 +83,7 @@
                 android:layout_marginLeft="45dp"
                 android:textSize="20dp"
                 android:fontFamily="@font/pfstardust"
-                android:layout_marginTop="6dp"
-                android:text="젊은 여성" />
+                android:layout_marginTop="6dp" />
 
             <TextView
                 android:id="@+id/txtTalk"
@@ -102,17 +120,17 @@
                 <Button
                     android:id="@+id/btnSelect1"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/button"
                     android:fontFamily="@font/pfstardust"
-                    android:textColor="#000000"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/btnSelect2"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/button"
                     android:textColor="#000000"
@@ -122,26 +140,26 @@
                 <Button
                     android:id="@+id/btnSelect3"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/button"
                     android:fontFamily="@font/pfstardust"
                     android:textColor="#000000"
                     android:text="Button" />
+
             </LinearLayout>
 
             <Button
                 android:id="@+id/goKitchen"
-                android:layout_width="50dp"
+                android:layout_width="80dp"
                 android:layout_height="32dp"
                 android:layout_gravity="right|bottom"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="#FFDDA6"
+                android:background="@drawable/gokitchen"
                 android:fontFamily="@font/pfstardust"
-                android:textColor="#000000"
-                android:text="주방"
                 android:visibility="invisible"></Button>
+
         </FrameLayout>
 
     </FrameLayout>

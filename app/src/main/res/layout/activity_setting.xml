@@ -66,17 +66,15 @@
             android:layout_width="50dp"
             android:layout_height="33dp"
             android:layout_marginLeft="70dp"
-            android:background="@android:color/white"
-            android:textColor="@android:color/black"
-            android:text="on" />
+            android:background="@drawable/on_light"
+           />
+
         <Button
             android:id="@+id/offBack"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="20dp"
-            android:background="@android:color/white"
-            android:textColor="@android:color/black"
-            android:text="off"/>
+            android:background="@drawable/off_dark" />
 
 
     </LinearLayout>
@@ -98,19 +96,16 @@
         <Button
             android:id="@+id/onSound"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="70dp"
-            android:textColor="@android:color/black"
-            android:background="@android:color/white"
-            android:text="on"/>
+                android:background="@drawable/on_light"
+            />
         <Button
             android:id="@+id/offSound"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="20dp"
-            android:textColor="@android:color/black"
-            android:background="@android:color/white"
-            android:text="off"/>
+            android:background="@drawable/off_dark" />
 
     </LinearLayout>
 

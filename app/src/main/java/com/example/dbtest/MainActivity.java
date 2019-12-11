@@ -34,7 +34,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     ImageView setting, guest;
-    Button btnSetting, btnSelect1, btnSelect2, btnSelect3, goKitchen;
+    Button btnSelect1, btnSelect2, btnSelect3, goKitchen;
     LinearLayout linBtn;
     TextView txtTalk, txtTalk2, guestname;
     FrameLayout frame;
@@ -81,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
         final Drawable drawable = res1.getDrawable(R.drawable.speech);
 
-        String menuarray[] = getResources().getStringArray(R.array.MENU);
+        //String menuarray[] = getResources().getStringArray(R.array.MENU);
+        String customarray[] = getResources().getStringArray(R.array.CUSTOM);
         final String blackarray[] = getResources().getStringArray(R.array.BLACK);
-        int i = rand.nextInt(9);
-        int j = rand.nextInt(4);
-        int r = rand.nextInt(2);
 
+        int r = rand.nextInt(2);
+        int i = rand.nextInt(7); //손님 랜덤
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,106 +95,319 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        String imgName = "guest" + i;
+        Resources res = getResources();
+        int id = res.getIdentifier(imgName, "drawable", getPackageName());
+
         for (int count = 0; count < 8; count++) {
             switch (r) {
                 case 0:
-                    txtTalk.setText(menuarray[i] + " " + (j + 1) + " 잔 주세요.");
-                    goKitchen.setVisibility(View.VISIBLE);
+                    txtTalk.setText(customarray[i]);
+                    switch (i) {
+                        case 0: {
+                            guestname.setText("22살 여성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest0);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+                        case 1: {
+                            guestname.setText("54살 남성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest1);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+                        case 2: {
+                            guestname.setText("46살 여성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest2);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+                        case 3: {
+                            guestname.setText("39살 남성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest2);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+                        case 4: {
+                            guestname.setText("18살 여성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest2);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+                        case 5: {
+                            guestname.setText("25살 남성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest2);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+                        case 6: {
+                            guestname.setText("30살 여성");
+                            Resources gu = getResources();
+                            Drawable dr = gu.getDrawable(R.drawable.guest2);
+                            goKitchen.setVisibility(View.VISIBLE);
+                            goKitchen.setClickable(true);
+                            break;
+                        }
+
+                    }
+                    goKitchen.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
                     break;
 
                 case 1:
-                    txtTalk.setText((blackarray[j]));
-                    if (j == 0) {
-                        btnSelect1.setText("손님, 죄송하지만 저희 매장에는 없는 메뉴입니다.\n 단 메뉴를 찾으신다면 초코 스무디로 준비해드릴까요?");
-                        btnSelect2.setText("그런 메뉴는 없습니다. 다른 걸로 주문하세요.");
-                        btnSelect3.setText("그런 거 시키시려면 별다방으로 가세요");
+                    frame.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            txtTalk.setVisibility(View.GONE);
+                            linBtn.setVisibility(View.VISIBLE);
+                            guestname.setVisibility(View.INVISIBLE);
+                            frame.setClickable(false);
+                            frame.setBackground(null);
+
+                        }
+                    });
+                    txtTalk.setText((blackarray[r]));
+                    if (r == 0) {
+                        Resources gu = getResources();
+                        Drawable dr = gu.getDrawable(R.drawable.guest1);
+                        guestname.setText("진상1");
+                        btnSelect1.setText("손님, 아이가 손으로 케잌을 만져서 판매가 어려워서\n이 케익까지 구매 해 주실 수 있을까요?");
+                        btnSelect2.setText("(못 본 척 한다.)");
+                        btnSelect3.setText("얘! 그걸 만지면 어떡하니!");
+                        btnSelect1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                linBtn.setVisibility(View.INVISIBLE);
+                                txtTalk2.setVisibility(View.VISIBLE);
+                                txtTalk2.setText("아, 죄송해요. 애기가 만진 것까지 합쳐서 계산해주세요.");
+                                goKitchen.setVisibility(View.VISIBLE);
+                                guestname.setVisibility(View.VISIBLE);
+                                frame.setClickable(true);
+                                frame.setBackground(drawable);
+
+                            }
+                        });
+
+
+                        btnSelect2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                linBtn.setVisibility(View.INVISIBLE);
+                                txtTalk2.setVisibility(View.VISIBLE);
+                                txtTalk2.setText("(양심에 찔리지만 넘어갔다.)");
+                                goKitchen.setVisibility(View.VISIBLE);
+                                guestname.setVisibility(View.VISIBLE);
+                                frame.setClickable(true);
+                                frame.setBackground(drawable);
+                            }
+                        });
+
+                        btnSelect3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
+                                startActivity(intent);
+
+                            }
+                        });
                     }
-                    if (j == 1) {
-                        btnSelect1.setText("손님, 주문 다시 확인하겠습니다. 아이스 아메리카노 주문하신 것 맞나요?");
-                        btnSelect2.setText("메뉴 제조");
-                        btnSelect3.setText("이어폰 빼고 제대로 주문하시겠어요?");
+                    if (r == 1) {
+                        guestname.setText("진상2");
+                        Resources gu = getResources();
+                        Drawable dr = gu.getDrawable(R.drawable.guest1);
+                        btnSelect1.setText("제가 궁예인 줄 아십니까?");
+                        btnSelect2.setText("죄송하지만 제가 기억이 안 나는데, 메뉴를 정확히 골라 주시겠어요?");
+                        btnSelect3.setText("네? 아메리카노?");
+                        btnSelect1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
+                                startActivity(intent);
+
+                            }
+                        });
+
+
+                        btnSelect2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                linBtn.setVisibility(View.INVISIBLE);
+                                txtTalk2.setVisibility(View.VISIBLE);
+                                txtTalk2.setText("따뜻한 바닐라라떼 1잔 주세요...");
+                                goKitchen.setVisibility(View.VISIBLE);
+                                guestname.setVisibility(View.VISIBLE);
+                                frame.setBackground(drawable);
+                            }
+                        });
+
+                        btnSelect3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                linBtn.setVisibility(View.INVISIBLE);
+                                txtTalk2.setVisibility(View.VISIBLE);
+                                txtTalk2.setText("아니 아니, 그거 말고 다른거 시켰잖아요");
+                                frame.setClickable(true);
+                                guestname.setVisibility(View.VISIBLE);
+                                frame.setBackground(drawable);
+                                frame.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        guestname.setVisibility(View.VISIBLE);
+                                        guestname.setText("나");
+                                        txtTalk2.setText("네? 혹시 카페라떼..?");
+                                        frame.setClickable(true);
+                                        frame.setBackground(drawable);
+                                        frame.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                guestname.setVisibility(View.VISIBLE);
+                                                guestname.setText("진상2");
+                                                txtTalk2.setText("아니이~ 그거 말고 달짝지근한거!");
+                                                frame.setClickable(true);
+                                                frame.setBackground(drawable);
+                                                frame.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        guestname.setVisibility(View.VISIBLE);
+                                                        guestname.setText("나");
+                                                        txtTalk2.setText("잘 모르겠는데,,,");
+                                                        frame.setClickable(true);
+                                                        frame.setBackground(drawable);
+                                                        frame.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                guestname.setVisibility(View.VISIBLE);
+                                                                guestname.setText("진상2");
+                                                                txtTalk2.setText("에이, 내가 힌트 줄게 ‘바’로 시작하는거!");
+                                                                frame.setClickable(true);
+                                                                frame.setBackground(drawable);
+                                                                frame.setOnClickListener(new View.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(View v) {
+                                                                        guestname.setVisibility(View.VISIBLE);
+                                                                        guestname.setText("뒤에있던 손님");
+                                                                        txtTalk2.setText("(짜증을 내며) 저기요, 저 빨리 주문하고 나가봐야 하거든요? \n언제까지 스무고개 하고 있을거에요?");
+                                                                        frame.setClickable(true);
+                                                                        frame.setBackground(drawable);
+                                                                        frame.setOnClickListener(new View.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(View v) {
+                                                                                guestname.setVisibility(View.VISIBLE);
+                                                                                guestname.setText("나");
+                                                                                txtTalk2.setText("아, 따뜻한 바닐라라떼요! \n(뒤의 손님에게) 죄송합니다, 조금만 더 기다려주세요!");
+                                                                                goKitchen.setVisibility(View.VISIBLE);
+                                                guestname.setVisibility(View.VISIBLE);
+                                                frame.setClickable(true);
+                                                frame.setBackground(drawable);
+
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                });
+                                                            }
+                                                        });
+                                                    }
+                                                });
+
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
                     }
-                    if (j == 2) {
-                        btnSelect1.setText("네? 다 똑같이 생기셨는데...");
-                        btnSelect2.setText("그냥 하나로 의견 모아서 주세요.");
-                        btnSelect3.setText("각자 한 잔씩 결제 가능한데, 한 카드로 진행 하면 될까요?");
-                    }
-                    if (j == 3) {
-                        btnSelect1.setText("할인이나 적립은 둘 중 하나만 선택하세요.");
-                        btnSelect2.setText("저희 매장은 할인과 적립 동시 적용 가능 매장이 아니어서요.\n 둘 중 하나만 이용 가능하신데, 어떤 걸로 하시겠어요?");
-                        btnSelect3.setText("(사장님께 전화해본다.)");
-                    }
-                    break;
+                    goKitchen.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+//                    if (j == 2) {
+//                        Resources gu = getResources();
+//                        Drawable dr = gu.getDrawable(R.drawable.guest1);
+//                        btnSelect1.setText("네? 다 똑같이 생기셨는데...");
+//                        btnSelect2.setText("그냥 하나로 의견 모아서 주세요.");
+//                        btnSelect3.setText("각자 한 잔씩 결제 가능한데, 한 카드로 진행 하면 될까요?");
+//                    }
+//                    if (j == 3) {
+//                        Resources gu = getResources();
+//                        Drawable dr = gu.getDrawable(R.drawable.guest1);
+//
+//                        btnSelect1.setText("할인이나 적립은 둘 중 하나만 선택하세요.");
+//                        btnSelect2.setText("저희 매장은 할인과 적립 동시 적용 가능 매장이 아니어서요.\n 둘 중 하나만 이용 가능하신데, 어떤 걸로 하시겠어요?");
+//                        btnSelect3.setText("(사장님께 전화해본다.)");
+//                    }
+//                    break;
+//            }
+
+
+//
+//            btnSelect1.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    linBtn.setVisibility(View.INVISIBLE);
+//                    txtTalk2.setVisibility(View.VISIBLE);
+//                    goKitchen.setVisibility(View.VISIBLE);
+//                    guestname.setVisibility(View.VISIBLE);
+//                    frame.setClickable(true);
+//                    frame.setBackground(drawable);
+//
+//                }
+//            });
+//
+//
+//            btnSelect2.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    linBtn.setVisibility(View.INVISIBLE);
+//                    txtTalk2.setVisibility(View.VISIBLE);
+//                    goKitchen.setVisibility(View.VISIBLE);
+//                    guestname.setVisibility(View.VISIBLE);
+//                    frame.setClickable(true);
+//                    frame.setBackground(drawable);
+//                }
+//            });
+//
+//            btnSelect3.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    linBtn.setVisibility(View.INVISIBLE);
+//                    txtTalk2.setVisibility(View.VISIBLE);
+//                    goKitchen.setVisibility(View.VISIBLE);
+//                    guestname.setVisibility(View.VISIBLE);
+//                    frame.setClickable(true);
+//                    frame.setBackground(drawable);
+//
+//                }
+//            });
+
+//            int rnd = rand.nextInt(3);
+//            String imgName = "guest" + rnd;
+//            Resources res = getResources();
+//            int id = res.getIdentifier(imgName, "drawable", getPackageName());
+//
+//            guest.setImageResource(id);
             }
-
-
-            frame.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    txtTalk.setVisibility(View.GONE);
-                    linBtn.setVisibility(View.VISIBLE);
-                    guestname.setVisibility(View.INVISIBLE);
-                    frame.setClickable(false);
-                    frame.setBackground(null);
-
-                }
-            });
-
-            btnSelect1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    linBtn.setVisibility(View.INVISIBLE);
-                    txtTalk2.setVisibility(View.VISIBLE);
-                    goKitchen.setVisibility(View.VISIBLE);
-                    guestname.setVisibility(View.VISIBLE);
-                    frame.setClickable(true);
-                    frame.setBackground(drawable);
-
-                }
-            });
-
-
-            btnSelect2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    linBtn.setVisibility(View.INVISIBLE);
-                    txtTalk2.setVisibility(View.VISIBLE);
-                    goKitchen.setVisibility(View.VISIBLE);
-                    guestname.setVisibility(View.VISIBLE);
-                    frame.setClickable(true);
-                    frame.setBackground(drawable);
-                }
-            });
-
-            btnSelect3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    linBtn.setVisibility(View.INVISIBLE);
-                    txtTalk2.setVisibility(View.VISIBLE);
-                    goKitchen.setVisibility(View.VISIBLE);
-                    guestname.setVisibility(View.VISIBLE);
-                    frame.setClickable(true);
-                    frame.setBackground(drawable);
-
-                }
-            });
-
-            goKitchen.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            int rnd = rand.nextInt(3);
-            String imgName = "guest" + rnd;
-            Resources res = getResources();
-            int id = res.getIdentifier(imgName, "drawable", getPackageName());
-
-            guest.setImageResource(id);
         }
-    }
 
-}
+    }}
