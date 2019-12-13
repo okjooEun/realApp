@@ -19,6 +19,7 @@
         <activity android:name=".menuDBActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".MakesuccessActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"
             android:screenOrientation="landscape"/>
         <activity android:name=".DayActivity"
             android:screenOrientation="landscape">
@@ -41,6 +42,13 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".WrongEndingActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".RecipebookActivity1"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".RecipebookActivity2"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>

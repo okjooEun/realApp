@@ -41,7 +41,7 @@
                 android:id="@+id/setting"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="730dp"
+                android:layout_marginLeft="790dp"
                 android:clickable="true"
                 app:srcCompat="@drawable/setting" />
 
@@ -156,7 +156,7 @@
                 android:layout_gravity="right|bottom"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/gokitchen"
+                android:background="@drawable/go_kitchen"
                 android:fontFamily="@font/pfstardust"
                 android:visibility="invisible"></Button>
 

@@ -57,6 +57,7 @@
                 android:layout_marginLeft="23dp"
                 android:layout_toRightOf="@+id/iceWater"
                 android:background="#00FFFFFF" />
+
             <Button
                 android:id="@+id/iceMilk"
                 android:layout_width="40dp"
@@ -70,6 +71,7 @@
         <TableLayout
             android:layout_width="185dp"
             android:layout_height="170dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="120dp">
 
             <TableRow
@@ -77,25 +79,24 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/ing0"
+                    android:id="@+id/ice_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src ="@drawable/ing0"
-                    />
+                    android:src="@drawable/ice_icon" />
 
                 <ImageView
-                    android:id="@+id/ing1"
+                    android:id="@+id/coffee_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src ="@drawable/ing1" />
+                    android:src="@drawable/coffee_icon" />
 
                 <ImageView
-                    android:id="@+id/ing2"
+                    android:id="@+id/vanil_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src ="@drawable/ing2" />
+                    android:src="@drawable/vanil_icon" />
             </TableRow>
 
             <TableRow
@@ -104,24 +105,24 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:id="@+id/ing3"
+                    android:id="@+id/choco_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src ="@drawable/ing3" />
+                    android:src="@drawable/choco_icon" />
 
                 <ImageView
-                    android:id="@+id/ing4"
+                    android:id="@+id/straw_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src ="@drawable/ing4" />
+                    android:src="@drawable/straw_icon" />
 
                 <ImageView
-                    android:id="@+id/ing5"
+                    android:id="@+id/banana_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src ="@drawable/ing5" />
+                    android:src="@drawable/banana_icon" />
             </TableRow>
 
             <TableRow
@@ -130,24 +131,24 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:id="@+id/ing6"
+                    android:id="@+id/mash_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src ="@drawable/ing6" />
+                    android:src="@drawable/mash_off" />
 
                 <ImageView
-                    android:id="@+id/ing7"
+                    android:id="@+id/toff_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src ="@drawable/ing7" />
+                    android:src="@drawable/toff_off" />
 
                 <ImageView
-                    android:id="@+id/ing8"
+                    android:id="@+id/mouse_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src ="@drawable/ing8" />
+                    android:src="@drawable/mouse_off" />
             </TableRow>
 
         </TableLayout>
@@ -155,19 +156,88 @@
         <Button
             android:id="@+id/blender"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="28dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
-            android:layout_gravity="bottom"
-            android:background= "#00FFFFFF"
-            android:layout_marginLeft="25dp" />
+            android:background="#00FFFFFF" />
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/trash"
-            android:layout_width="170dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:background= "#00FFFFFF"
-            android:layout_marginLeft="25dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="75dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bil1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pfstardust"
+            android:textAlignment="center"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/bil3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pfstardust"
+            android:textAlignment="center"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="75dp"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="75dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bil2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pfstardust"
+            android:textAlignment="center"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/bil4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="75dp"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/pfstardust"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/trash"
+        android:layout_width="130dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="40dp"
+        android:layout_gravity="bottom"
+        android:background="#00FFFFFF"/>
+
+</FrameLayout>
+
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -223,6 +293,7 @@
             android:layout_width="140dp"
             android:layout_height="60dp"
             android:layout_marginTop="35dp"
+            android:layout_marginLeft="40dp"
             android:background="@drawable/complete" />
 
     </LinearLayout>

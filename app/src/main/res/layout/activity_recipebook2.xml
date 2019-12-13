@@ -4,17 +4,16 @@
     android:orientation="vertical"
     android:layout_width="500dp"
     android:id="@+id/rel_recipeBook"
-    android:background="@drawable/recip1"
+    android:background="@drawable/recipe3"
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/right_button"
+        android:id="@+id/left_button"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-
-        android:background="#00FFFFFF" />
+       android:layout_marginTop="260dp"
+        android:layout_marginLeft="10dp"
+        android:background="#00FFFFFF"/>
 
 
 </RelativeLayout>

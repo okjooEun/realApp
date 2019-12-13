@@ -12,15 +12,16 @@ import android.widget.RelativeLayout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RecipebookActivity extends AppCompatActivity {
+public class RecipebookActivity1 extends AppCompatActivity {
 
     Button right_button;
+    Button left_button;
     RelativeLayout rel_recipebook;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipebook);
+        setContentView(R.layout.activity_recipebook1);
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
@@ -37,12 +38,22 @@ public class RecipebookActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOption);
         //소프트키(네비게이션바) 없애기 끝
         right_button = (Button) findViewById(R.id.right_button);
+        left_button =(Button) findViewById(R.id.left_button);
+
         rel_recipebook = (RelativeLayout) findViewById(R.id.rel_recipeBook);
 
         right_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( RecipebookActivity.this, RecipebookActivity1.class);
+                Intent intent = new Intent( RecipebookActivity1.this, RecipebookActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+        left_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( RecipebookActivity1.this, RecipebookActivity.class);
                 startActivity(intent);
             }
         });

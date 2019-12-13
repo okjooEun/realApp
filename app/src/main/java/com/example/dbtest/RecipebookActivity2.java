@@ -1,22 +1,26 @@
 package com.example.dbtest;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MakesuccessActivity extends AppCompatActivity {
+public class RecipebookActivity2 extends AppCompatActivity {
 
-    RelativeLayout rel;
+    Button left_button;
+    RelativeLayout rel_recipebook;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_makesuccess);
+        setContentView(R.layout.activity_recipebook2);
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
@@ -32,22 +36,16 @@ public class MakesuccessActivity extends AppCompatActivity {
 
         decorView.setSystemUiVisibility(uiOption);
         //소프트키(네비게이션바) 없애기 끝
+       left_button = (Button) findViewById(R.id.left_button);
+        rel_recipebook = (RelativeLayout) findViewById(R.id.rel_recipeBook);
 
-        rel = (RelativeLayout) findViewById(R.id.rel);
-
-        rel.setOnClickListener(new View.OnClickListener() {
+        left_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                try{
-//                    Thread.sleep(3000);
-//                }catch (InterruptedException e){
-//                    e.printStackTrace();
-//                }
-                Intent intent = new Intent(MakesuccessActivity.this, MainActivity.class);
+                Intent intent = new Intent( RecipebookActivity2.this, RecipebookActivity1.class);
                 startActivity(intent);
-                finish();
             }
         });
-    }
-}
+
+
+    }}
