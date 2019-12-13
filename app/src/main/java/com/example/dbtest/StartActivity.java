@@ -16,12 +16,15 @@ public class StartActivity extends AppCompatActivity {
 
     ImageView setting;
     Button btnstart, btncall;
+    private BackPressCloseHandler backPressCloseHandler;
+
 
     @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_start);
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
     //소프트키(네비게이션바) 없애기 시작
     View decorView = getWindow().getDecorView();
@@ -54,7 +57,9 @@ protected void onCreate(Bundle savedInstanceState) {
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, DayActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 }
+    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
 }

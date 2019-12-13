@@ -15,11 +15,16 @@ public class NewMenuActivity extends AppCompatActivity{
 
     RelativeLayout rel;
     ImageView setting;
+    private BackPressCloseHandler backPressCloseHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newmenu);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
 
@@ -51,7 +56,10 @@ public class NewMenuActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(NewMenuActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
+
+    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
     }

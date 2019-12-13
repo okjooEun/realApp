@@ -6,9 +6,11 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +19,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class KitchenActivity extends AppCompatActivity {
 
     Button iceCup, iceWater, iceMilk,hotCup, hotWater, hotMilk, blender, recipeBook, btnMake,trash;
    ImageView ice_icon, coffee_icon, vanil_icon, choco_icon, straw_icon, banana_icon, mash_icon, toff_icon, mouse_icon;
     ImageView selectCup, selectWM, selectIng,selectBlen;
+    LinearLayout imageView15;
     TextView bil1, bil2, bil3,bil4;
+
+    private BackPressCloseHandler backPressCloseHandler;
+
+    ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,8 @@ public class KitchenActivity extends AppCompatActivity {
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         int uiOption = getWindow().getDecorView().getSystemUiVisibility();
 
@@ -71,6 +83,8 @@ public class KitchenActivity extends AppCompatActivity {
         selectBlen = (ImageView) findViewById(R.id.selectBlen);
         selectIng = (ImageView) findViewById(R.id.selectIng);
 
+        imageView15 = (LinearLayout) findViewById(R.id.imageView15);
+
         bil1 = (TextView) findViewById(R.id.bil1);
         bil2 = (TextView) findViewById(R.id.bil2);
         bil3 = (TextView) findViewById(R.id.bil3);
@@ -79,6 +93,16 @@ public class KitchenActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         trash = (Button) findViewById(R.id.trash);
+
+
+        Resources resources = getResources();
+        drawables.add(resources.getDrawable(R.drawable.bar5));
+        drawables.add(resources.getDrawable(R.drawable.bar4));
+        drawables.add(resources.getDrawable(R.drawable.bar3));
+        drawables.add(resources.getDrawable(R.drawable.bar2));
+        drawables.add(resources.getDrawable(R.drawable.bar1));
+        drawables.add(resources.getDrawable(R.drawable.bar0));
+
 
         String a = intent.getExtras().getString("bil1");
         bil1.setText(a);
@@ -271,4 +295,57 @@ public class KitchenActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
+
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        AnimThread thread = new AnimThread();
+        thread.start();
+    }
+
+    class AnimThread extends Thread {
+        public void run(){
+
+            int index = 0;
+
+            for (int i = 0; i < 100; i++) {
+                final Drawable drawable;
+                drawable = drawables.get(index);
+                index += 1;
+                if (index >= 6) {
+                    index = 0;
+                }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView15.setBackground(drawable);
+                    }
+                });
+                try {
+                /*
+                    while(!AnimThread.currentThread().isInterrupted()){
+                        runOnUiThread(new Runnable() {
+                            public void run(){}
+                        });
+                        SystemClock.sleep(100000000);
+                    }
+                 */
+
+                    Thread.sleep(1500);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                    //AnimThread.interrupt();
+                    //Intent end2 = new Intent(KitchenActivity.this, KitchenTimeover.class);
+                    //startActivity(end2);
+                }
+                //handler.sendEmptyMessage(0);
+            }
+        }
+    }
+
+
+
 }

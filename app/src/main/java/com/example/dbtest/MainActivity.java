@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -33,11 +35,20 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView setting, guest;
+    private BackPressCloseHandler backPressCloseHandler;
+
+    ImageView setting, guest, imageView16;
     Button btnSelect1, btnSelect2, btnSelect3, goKitchen;
-    LinearLayout linBtn;
+    LinearLayout linBtn, lin;
     TextView txtTalk, txtTalk2, guestname;
     FrameLayout frame;
+
+    ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+    Handler handler = new Handler();
+
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference("case");
 
     Random rand = new Random();
 
@@ -46,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
@@ -64,7 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
         setting = (ImageView) findViewById(R.id.setting);
         guest = (ImageView) findViewById(R.id.guest);
+        imageView16 = (ImageView) findViewById(R.id.imageView16);
 
+
+        lin = (LinearLayout) findViewById(R.id.lin);
         linBtn = (LinearLayout) findViewById(R.id.linBtn);
         frame = (FrameLayout) findViewById(R.id.frame);
 
@@ -80,6 +95,14 @@ public class MainActivity extends AppCompatActivity {
         Resources res1 = getResources();
 
         final Drawable drawable = res1.getDrawable(R.drawable.speech);
+
+        Resources resources = getResources();
+        drawables.add(resources.getDrawable(R.drawable.selec_bar5));
+        drawables.add(resources.getDrawable(R.drawable.selec_bar4));
+        drawables.add(resources.getDrawable(R.drawable.selec_bar3));
+        drawables.add(resources.getDrawable(R.drawable.selec_bar2));
+        drawables.add(resources.getDrawable(R.drawable.selec_bar1));
+        drawables.add(resources.getDrawable(R.drawable.selec_bar0));
 
         //String menuarray[] = getResources().getStringArray(R.array.MENU);
         String customarray[] = getResources().getStringArray(R.array.CUSTOM);
@@ -101,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         for (int count = 0; count < 8; count++) {
             switch (r) {
                 case 0:
+                    imageView16.setVisibility(View.INVISIBLE);
                     txtTalk.setText(customarray[r]);
                     switch (r) {
                         case 0: {
@@ -115,8 +139,9 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                                    intent.putExtra("bil1","아이스아메리카노 \nX 1");
+                                    intent.putExtra("bil1", "아이스아메리카노 \nX 1");
                                     startActivity(intent);
+                                    finish();
                                 }
                             });
                             break;
@@ -125,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         case 1: {
                             guestname.setText("30살 여성");
                             Resources gu = getResources();
-                            Drawable dr = gu.getDrawable(R.drawable.guest0);
+                            Drawable dr = gu.getDrawable(R.drawable.guest1);
                             guest.setImageDrawable(dr);
                             goKitchen.setVisibility(View.VISIBLE);
                             goKitchen.setClickable(true);
@@ -134,9 +159,10 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                                    intent.putExtra("bil1","딸기 스무디 \nX 1");
-                                    intent.putExtra("bil2","핫 초코라떼 \nX 1");
+                                    intent.putExtra("bil1", "딸기 스무디 \nX 1");
+                                    intent.putExtra("bil2", "핫 초코라떼 \nX 1");
                                     startActivity(intent);
+                                    finish();
                                 }
                             });
                             break;
@@ -157,13 +183,19 @@ public class MainActivity extends AppCompatActivity {
                             frame.setClickable(false);
                             frame.setBackground(null);
 
+                            WorkObject sharedObject = new WorkObject();
+                            AnimThread1 thread = new AnimThread1(sharedObject);
+                            thread.start();
+
+
                         }
                     });
-                    txtTalk.setText((blackarray[r-1]));
+                    txtTalk.setText((blackarray[r - 1]));
                     if (r == 1) {
                         Resources gu = getResources();
-                        Drawable dr = gu.getDrawable(R.drawable.guest0);
-                        guest.setImageDrawable(dr);
+                        Drawable dr = gu.getDrawable(R.drawable.black);
+                        lin.setBackground(dr);
+
                         guestname.setText("진상1");
                         btnSelect1.setText("손님, 아이가 손으로 케잌을 만져서 판매가 어려워서\n이 케익까지 구매 해 주실 수 있을까요?");
                         btnSelect2.setText("(못 본 척 한다.)");
@@ -171,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                imageView16.setVisibility(View.INVISIBLE);
                                 linBtn.setVisibility(View.INVISIBLE);
                                 txtTalk2.setVisibility(View.VISIBLE);
                                 txtTalk2.setText("아, 죄송해요. 애기가 만진 것까지 합쳐서 계산해주세요.");
@@ -178,15 +211,18 @@ public class MainActivity extends AppCompatActivity {
                                 guestname.setVisibility(View.VISIBLE);
                                 frame.setClickable(true);
                                 frame.setBackground(drawable);
+                                databaseReference.setValue("1");
+
                                 goKitchen.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                                        intent.putExtra("bil1","아이스 바닐라라떼 \nX 1");
-                                        intent.putExtra("bil2","핫 아메리카노 \nX 2");
-                                        intent.putExtra("bil3","핫 카페라떼 \nX 1");
-                                        intent.putExtra("bil4","핫초코 \nX 1");
+                                        intent.putExtra("bil1", "아이스 바닐라라떼 \nX 1");
+                                        intent.putExtra("bil2", "핫 아메리카노 \nX 2");
+                                        intent.putExtra("bil3", "핫 카페라떼 \nX 1");
+                                        intent.putExtra("bil4", "핫초코 \nX 1");
                                         startActivity(intent);
+                                        finish();
                                     }
                                 });
 
@@ -208,11 +244,12 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                                        intent.putExtra("bil1","아이스 바닐라라떼 \nX 1");
-                                        intent.putExtra("bil2","핫 아메리카노 \nX 2");
-                                        intent.putExtra("bil3","핫 카페라떼 \nX 1");
-                                        intent.putExtra("bil4","핫초코 \nX 1");
+                                        intent.putExtra("bil1", "아이스 바닐라라떼 \nX 1");
+                                        intent.putExtra("bil2", "핫 아메리카노 \nX 2");
+                                        intent.putExtra("bil3", "핫 카페라떼 \nX 1");
+                                        intent.putExtra("bil4", "핫초코 \nX 1");
                                         startActivity(intent);
+                                        finish();
                                     }
                                 });
                             }
@@ -223,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
                                 startActivity(intent);
+                                finish();
 
                             }
                         });
@@ -230,8 +268,9 @@ public class MainActivity extends AppCompatActivity {
                     if (r == 2) {
                         guestname.setText("진상2");
                         Resources gu = getResources();
-                        Drawable dr = gu.getDrawable(R.drawable.guest0);
+                        Drawable dr = gu.getDrawable(R.drawable.black2);
                         guest.setImageDrawable(dr);
+
                         btnSelect1.setText("제가 궁예인 줄 아십니까?");
                         btnSelect2.setText("죄송하지만 제가 기억이 안 나는데, 메뉴를 정확히 골라 주시겠어요?");
                         btnSelect3.setText("네? 아메리카노?");
@@ -240,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
                                 startActivity(intent);
+                                finish();
 
                             }
                         });
@@ -259,8 +299,9 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                                        intent.putExtra("bil1","핫 바닐라라떼 \nX 1");
+                                        intent.putExtra("bil1", "핫 바닐라라떼 \nX 1");
                                         startActivity(intent);
+                                        finish();
                                     }
                                 });
                             }
@@ -328,13 +369,14 @@ public class MainActivity extends AppCompatActivity {
                                                                                     @Override
                                                                                     public void onClick(View v) {
                                                                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
-                                                                                        intent.putExtra("bil1","핫 \n바닐라라떼 X 1");
+                                                                                        intent.putExtra("bil1", "핫 \n바닐라라떼 X 1");
                                                                                         startActivity(intent);
+                                                                                        finish();
                                                                                     }
                                                                                 });
-                                                guestname.setVisibility(View.VISIBLE);
-                                                frame.setClickable(true);
-                                                frame.setBackground(drawable);
+                                                                                guestname.setVisibility(View.VISIBLE);
+                                                                                frame.setClickable(true);
+                                                                                frame.setBackground(drawable);
 
                                                                             }
                                                                         });
@@ -351,73 +393,96 @@ public class MainActivity extends AppCompatActivity {
                                 });
                             }
                         });
+
+
                     }
-//                    if (j == 2) {
-//                        Resources gu = getResources();
-//                        Drawable dr = gu.getDrawable(R.drawable.guest1);
-//                        btnSelect1.setText("네? 다 똑같이 생기셨는데...");
-//                        btnSelect2.setText("그냥 하나로 의견 모아서 주세요.");
-//                        btnSelect3.setText("각자 한 잔씩 결제 가능한데, 한 카드로 진행 하면 될까요?");
-//                    }
-//                    if (j == 3) {
-//                        Resources gu = getResources();
-//                        Drawable dr = gu.getDrawable(R.drawable.guest1);
-//
-//                        btnSelect1.setText("할인이나 적립은 둘 중 하나만 선택하세요.");
-//                        btnSelect2.setText("저희 매장은 할인과 적립 동시 적용 가능 매장이 아니어서요.\n 둘 중 하나만 이용 가능하신데, 어떤 걸로 하시겠어요?");
-//                        btnSelect3.setText("(사장님께 전화해본다.)");
-//                    }
-//                    break;
-//            }
-
-
-//
-//            btnSelect1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    linBtn.setVisibility(View.INVISIBLE);
-//                    txtTalk2.setVisibility(View.VISIBLE);
-//                    goKitchen.setVisibility(View.VISIBLE);
-//                    guestname.setVisibility(View.VISIBLE);
-//                    frame.setClickable(true);
-//                    frame.setBackground(drawable);
-//
-//                }
-//            });
-//
-//
-//            btnSelect2.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    linBtn.setVisibility(View.INVISIBLE);
-//                    txtTalk2.setVisibility(View.VISIBLE);
-//                    goKitchen.setVisibility(View.VISIBLE);
-//                    guestname.setVisibility(View.VISIBLE);
-//                    frame.setClickable(true);
-//                    frame.setBackground(drawable);
-//                }
-//            });
-//
-//            btnSelect3.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    linBtn.setVisibility(View.INVISIBLE);
-//                    txtTalk2.setVisibility(View.VISIBLE);
-//                    goKitchen.setVisibility(View.VISIBLE);
-//                    guestname.setVisibility(View.VISIBLE);
-//                    frame.setClickable(true);
-//                    frame.setBackground(drawable);
-//
-//                }
-//            });
-
-//            int rnd = rand.nextInt(3);
-//            String imgName = "guest" + rnd;
-//            Resources res = getResources();
-//            int id = res.getIdentifier(imgName, "drawable", getPackageName());
-//
-//            guest.setImageResource(id);
             }
         }
 
-    }}
+    }
+
+    class WorkObject { // 공유 객체 클래스
+        public synchronized void AnimThread1() {
+            System.out.println("AnimThread1의 methodA() 작업 실행");
+            notify(); // 일시 정지 상태에 있는 ThreadB를 실행 대기 상태로 전환
+            try {
+                wait(); // ThreadA를 일시 정지 상태로 전환
+            } catch (InterruptedException e) {
+            }
+        }
+
+        public synchronized void methodB() {
+            System.out.println("ThreadB의 methodB() 작업 실행");
+            notify(); // 일시 정지 상태에 있는 ThreadA를 실행 대기 상태로 전환
+            try {
+                wait(); // ThreadB를 일시 정지 상태로 전환
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+
+
+    class AnimThread1 extends Thread {
+        private WorkObject workObject;
+
+        public AnimThread1(WorkObject workObject) {
+            this.workObject = workObject; //공유객체 저장
+        }
+
+        public void run() {
+            int index = 0;
+            for (int i = 0; i < 100; i++) {
+                final Drawable drawable = drawables.get(index);
+                index += 1;
+                if (index >= 6) {
+                    index = 0;
+                    Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
+                    startActivity(intent);
+
+
+                }
+                /*
+                else if(index >= 7 )
+                {
+                    break;
+                }
+                 */
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView16.setImageDrawable(drawable);
+                    }
+                });
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    workObject.AnimThread1();
+                }
+            }
+
+        }
+    }
+
+    class ThreadB extends Thread {
+        private WorkObject workObject;
+
+        public ThreadB(WorkObject workObject) {
+            this.workObject = workObject;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < 5; i++) {
+                workObject.methodB();
+            }
+        }
+
+        public void onBackPressed() {
+
+            backPressCloseHandler.onBackPressed();
+        }
+    }
+
+
+}

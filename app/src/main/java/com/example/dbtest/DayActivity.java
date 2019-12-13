@@ -15,11 +15,15 @@ public class DayActivity extends AppCompatActivity {
     RelativeLayout rel;
     TextView textView3;
     ImageView setting;
+    private BackPressCloseHandler backPressCloseHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
 
@@ -66,7 +70,13 @@ public class DayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DayActivity.this, NewMenuActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
-}
+
+    @Override public void onBackPressed()
+    { //super.onBackPressed();
+         backPressCloseHandler.onBackPressed(); }
+
+    }

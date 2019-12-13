@@ -14,13 +14,13 @@ public class WrongEndingActivity extends AppCompatActivity {
 
     LinearLayout lin;
     ImageView setting;
-
+    private BackPressCloseHandler backPressCloseHandler;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrongending);
 
-
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
@@ -53,7 +53,12 @@ public class WrongEndingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WrongEndingActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
+
+    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
+
+
 }
