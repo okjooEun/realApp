@@ -47,6 +47,7 @@ public class RecipebookActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent( RecipebookActivity1.this, RecipebookActivity2.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -55,6 +56,7 @@ public class RecipebookActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent( RecipebookActivity1.this, RecipebookActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

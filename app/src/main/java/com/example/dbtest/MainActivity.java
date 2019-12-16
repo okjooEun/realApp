@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         final Drawable drawable = res1.getDrawable(R.drawable.speech);
 
         Resources resources = getResources();
+
         drawables.add(resources.getDrawable(R.drawable.selec_bar5));
         drawables.add(resources.getDrawable(R.drawable.selec_bar4));
         drawables.add(resources.getDrawable(R.drawable.selec_bar3));
@@ -108,12 +109,12 @@ public class MainActivity extends AppCompatActivity {
         String customarray[] = getResources().getStringArray(R.array.CUSTOM);
         final String blackarray[] = getResources().getStringArray(R.array.BLACK);
 
-        int r = rand.nextInt(2);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -121,12 +122,15 @@ public class MainActivity extends AppCompatActivity {
 //        Resources res = getResources();
 //        int id = res.getIdentifier(imgName, "drawable", getPackageName());
 
+        int r = rand.nextInt(blackarray.length);
+        int i = rand.nextInt(1);
+        int j = rand.nextInt(customarray.length);
         for (int count = 0; count < 8; count++) {
-            switch (r) {
+            switch (j) {
                 case 0:
                     imageView16.setVisibility(View.INVISIBLE);
-                    txtTalk.setText(customarray[r]);
-                    switch (r) {
+                    txtTalk.setText(customarray[i]);
+                    switch (i) {
                         case 0: {
                             guestname.setText("22살 여성");
                             Resources gu = getResources();
@@ -172,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
 
-                case 1:
+                case 1: {
                     frame.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -190,8 +194,9 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
-                    txtTalk.setText((blackarray[r - 1]));
-                    if (r == 1) {
+
+                    txtTalk.setText((blackarray[r]));
+                    if (r == 0) {
                         Resources gu = getResources();
                         Drawable dr = gu.getDrawable(R.drawable.black);
                         lin.setBackground(dr);
@@ -265,11 +270,11 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-                    if (r == 2) {
+                    if (r == 1) {
                         guestname.setText("진상2");
-                        Resources gu = getResources();
-                        Drawable dr = gu.getDrawable(R.drawable.black2);
-                        guest.setImageDrawable(dr);
+                        Resources gu1 = getResources();
+                        Drawable dr1 = gu1.getDrawable(R.drawable.black2);
+                        guest.setImageDrawable(dr1);
 
                         btnSelect1.setText("제가 궁예인 줄 아십니까?");
                         btnSelect2.setText("죄송하지만 제가 기억이 안 나는데, 메뉴를 정확히 골라 주시겠어요?");
@@ -394,11 +399,10 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
-
                     }
+                }
             }
         }
-
     }
 
     class WorkObject { // 공유 객체 클래스
@@ -436,8 +440,8 @@ public class MainActivity extends AppCompatActivity {
                 index += 1;
                 if (index >= 6) {
                     index = 0;
-                    Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
-                    startActivity(intent);
+                    // Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
+                    // startActivity(intent);
 
 
                 }
@@ -482,7 +486,7 @@ public class MainActivity extends AppCompatActivity {
 
             backPressCloseHandler.onBackPressed();
         }
+
     }
-
-
 }
+

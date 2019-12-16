@@ -48,6 +48,8 @@
         <activity android:name=".RecipebookActivity2"
             android:theme="@style/Theme.AppCompat.Dialog"
             android:screenOrientation="landscape"/>
+        <activity android:name=".HelpActivity"
+            android:screenOrientation="landscape" />
 
     </application>
 

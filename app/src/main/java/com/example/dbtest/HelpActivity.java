@@ -1,26 +1,22 @@
 package com.example.dbtest;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RecipebookActivity2 extends AppCompatActivity {
+public class HelpActivity extends AppCompatActivity {
 
-    Button left_button;
-    RelativeLayout rel_recipebook;
+    LinearLayout lin;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipebook2);
+        setContentView(R.layout.activity_help);
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
@@ -36,17 +32,15 @@ public class RecipebookActivity2 extends AppCompatActivity {
 
         decorView.setSystemUiVisibility(uiOption);
         //소프트키(네비게이션바) 없애기 끝
-       left_button = (Button) findViewById(R.id.left_button);
-        rel_recipebook = (RelativeLayout) findViewById(R.id.rel_recipeBook);
 
-        left_button.setOnClickListener(new View.OnClickListener() {
+        lin = (LinearLayout) findViewById(R.id.lin);
+
+        lin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( RecipebookActivity2.this, RecipebookActivity1.class);
-                startActivity(intent);
+         
                 finish();
             }
         });
-
-
-    }}
+    }
+}

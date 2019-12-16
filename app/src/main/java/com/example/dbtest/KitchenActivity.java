@@ -25,8 +25,7 @@ public class KitchenActivity extends AppCompatActivity {
 
     Button iceCup, iceWater, iceMilk,hotCup, hotWater, hotMilk, blender, recipeBook, btnMake,trash;
    ImageView ice_icon, coffee_icon, vanil_icon, choco_icon, straw_icon, banana_icon, mash_icon, toff_icon, mouse_icon;
-    ImageView selectCup, selectWM, selectIng,selectBlen;
-    LinearLayout imageView15;
+    ImageView selectCup, selectWM, selectIng,selectBlen, imageView15, setting, help;
     TextView bil1, bil2, bil3,bil4;
 
     private BackPressCloseHandler backPressCloseHandler;
@@ -66,6 +65,8 @@ public class KitchenActivity extends AppCompatActivity {
         mash_icon =(ImageView) findViewById(R.id.mash_icon);
         toff_icon =(ImageView) findViewById(R.id.toff_icon);
         mouse_icon=(ImageView) findViewById(R.id.mouse_icon);
+        setting =(ImageView) findViewById(R.id.setting);
+        help = (ImageView) findViewById(R.id.help);
 
 
         iceCup = (Button) findViewById(R.id.iceCup);
@@ -82,8 +83,7 @@ public class KitchenActivity extends AppCompatActivity {
         selectWM = (ImageView) findViewById(R.id.selectWM);
         selectBlen = (ImageView) findViewById(R.id.selectBlen);
         selectIng = (ImageView) findViewById(R.id.selectIng);
-
-        imageView15 = (LinearLayout) findViewById(R.id.imageView15);
+        imageView15 = (ImageView) findViewById(R.id.imageView15);
 
         bil1 = (TextView) findViewById(R.id.bil1);
         bil2 = (TextView) findViewById(R.id.bil2);
@@ -117,6 +117,26 @@ public class KitchenActivity extends AppCompatActivity {
         bil4.setText(d);
 
 
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setting.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(KitchenActivity.this, SettingActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(KitchenActivity.this, HelpActivity.class);
+                startActivity(intent1);
+            }
+        });
         iceCup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

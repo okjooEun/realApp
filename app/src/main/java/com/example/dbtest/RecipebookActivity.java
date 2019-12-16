@@ -44,6 +44,7 @@ public class RecipebookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent( RecipebookActivity.this, RecipebookActivity1.class);
                 startActivity(intent);
+                finish();
             }
         });
 
