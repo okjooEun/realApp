@@ -38,7 +38,7 @@ public class HelpActivity extends AppCompatActivity {
         lin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-         
+
                 finish();
             }
         });

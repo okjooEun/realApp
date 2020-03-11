@@ -1,11 +1,10 @@
 package com.example.dbtest;
 
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.app.AlertDialog;
@@ -55,11 +54,31 @@ protected void onCreate(Bundle savedInstanceState) {
         btnstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, DayActivity.class);
+                Intent intent = new Intent(StartActivity.this, PrologueActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 }
-    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
-}
+
+// 뒤로가기 눌렀을 때
+@Override public void onBackPressed() { //backPressCloseHandler.onBackPressed();
+
+        AlertDialog.Builder dia = new AlertDialog.Builder(this);
+        dia.setTitle("종료");
+        dia.setMessage("정말 종료하시겠습니까?");
+        dia.setIcon(R.drawable.icon1).setPositiveButton("네", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+        finish();
+        }
+        });
+        dia.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+
+        }
+        });
+        dia.show();
+        }
+        }

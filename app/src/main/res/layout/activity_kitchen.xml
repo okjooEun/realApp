@@ -132,24 +132,24 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/ice_icon"
+                    android:id="@+id/icon0"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ice_icon" />
+                    android:src="@drawable/icon0" />
 
                 <ImageView
-                    android:id="@+id/coffee_icon"
+                    android:id="@+id/icon1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/coffee_icon" />
+                    android:src="@drawable/icon1" />
 
                 <ImageView
-                    android:id="@+id/vanil_icon"
+                    android:id="@+id/icon2"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/vanil_icon" />
+                    android:src="@drawable/icon2" />
             </TableRow>
 
             <TableRow
@@ -158,24 +158,24 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:id="@+id/choco_icon"
+                    android:id="@+id/icon3"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/choco_icon" />
+                    android:src="@drawable/icon3" />
 
                 <ImageView
-                    android:id="@+id/straw_icon"
+                    android:id="@+id/icon4"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/straw_icon" />
+                    android:src="@drawable/icon4" />
 
                 <ImageView
-                    android:id="@+id/banana_icon"
+                    android:id="@+id/icon5"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/banana_icon" />
+                    android:src="@drawable/icon5" />
             </TableRow>
 
             <TableRow
@@ -184,20 +184,20 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:id="@+id/mash_icon"
+                    android:id="@+id/icon6"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/mash_off" />
 
                 <ImageView
-                    android:id="@+id/toff_icon"
+                    android:id="@+id/icon7"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/toff_off" />
 
                 <ImageView
-                    android:id="@+id/mouse_icon"
+                    android:id="@+id/icon8"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
@@ -328,6 +328,14 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp" />
+
+            <ImageView
+                android:id="@+id/selectIng2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/selectBlen"

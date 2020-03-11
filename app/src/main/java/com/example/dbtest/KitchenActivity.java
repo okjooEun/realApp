@@ -3,11 +3,17 @@ package com.example.dbtest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.Display;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,11 +30,14 @@ import java.util.ArrayList;
 public class KitchenActivity extends AppCompatActivity {
 
     Button iceCup, iceWater, iceMilk,hotCup, hotWater, hotMilk, blender, recipeBook, btnMake,trash;
-   ImageView ice_icon, coffee_icon, vanil_icon, choco_icon, straw_icon, banana_icon, mash_icon, toff_icon, mouse_icon;
-    ImageView selectCup, selectWM, selectIng,selectBlen, imageView15, setting, help;
+    ImageView icon0,icon1,icon2,icon3,icon4,icon5,icon6, icon7, icon8;
+    ImageView selectCup, selectWM, selectIng,selectIng2,selectBlen, imageView15, setting, help;
     TextView bil1, bil2, bil3,bil4;
 
     private BackPressCloseHandler backPressCloseHandler;
+
+   private CountDownTimer ktimer;
+
 
     ArrayList<Drawable> drawables = new ArrayList<Drawable>();
     Handler handler = new Handler();
@@ -44,6 +53,8 @@ public class KitchenActivity extends AppCompatActivity {
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 
+        CountClass countclass = (CountClass) getApplication();
+
         int uiOption = getWindow().getDecorView().getSystemUiVisibility();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -54,26 +65,41 @@ public class KitchenActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
         decorView.setSystemUiVisibility(uiOption);
-        //소프트키(네비게이션바) 없애기 끝
+        //소프트키(네비게이션바) 없애기
 
-        ice_icon = (ImageView) findViewById(R.id.ice_icon);
-        coffee_icon =(ImageView)findViewById(R.id.coffee_icon);
-        vanil_icon =(ImageView)findViewById(R.id.vanil_icon);
-        choco_icon =(ImageView) findViewById(R.id.choco_icon);
-        straw_icon = (ImageView) findViewById(R.id.straw_icon);
-        banana_icon =(ImageView) findViewById(R.id.banana_icon);
-        mash_icon =(ImageView) findViewById(R.id.mash_icon);
-        toff_icon =(ImageView) findViewById(R.id.toff_icon);
-        mouse_icon=(ImageView) findViewById(R.id.mouse_icon);
-        setting =(ImageView) findViewById(R.id.setting);
+        ktimer = new CountDownTimer(15*1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                //엔딩 화면 넣기
+                Intent intent = new Intent(KitchenActivity.this, WrongEndingActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+
+        icon0 = (ImageView) findViewById(R.id.icon0);
+        icon1 = (ImageView) findViewById(R.id.icon1);
+        icon2 = (ImageView) findViewById(R.id.icon2);
+        icon3 = (ImageView) findViewById(R.id.icon3);
+        icon4 = (ImageView) findViewById(R.id.icon4);
+        icon5 = (ImageView) findViewById(R.id.icon5);
+        icon6 = (ImageView) findViewById(R.id.icon6);
+        icon7 = (ImageView) findViewById(R.id.icon7);
+        icon8 = (ImageView) findViewById(R.id.icon8);
+        setting = (ImageView) findViewById(R.id.setting);
         help = (ImageView) findViewById(R.id.help);
 
 
         iceCup = (Button) findViewById(R.id.iceCup);
         hotCup = (Button) findViewById(R.id.hotCup);
-        iceWater =(Button) findViewById(R.id.iceWater);
+        iceWater = (Button) findViewById(R.id.iceWater);
         hotWater = (Button) findViewById(R.id.hotWater);
-        iceMilk =(Button) findViewById(R.id.iceMilk);
+        iceMilk = (Button) findViewById(R.id.iceMilk);
         hotMilk = (Button) findViewById(R.id.hotMilk);
         blender = (Button) findViewById(R.id.blender);
         recipeBook = (Button) findViewById(R.id.recipeBook);
@@ -83,6 +109,7 @@ public class KitchenActivity extends AppCompatActivity {
         selectWM = (ImageView) findViewById(R.id.selectWM);
         selectBlen = (ImageView) findViewById(R.id.selectBlen);
         selectIng = (ImageView) findViewById(R.id.selectIng);
+        selectIng2 = (ImageView) findViewById(R.id.selectIng2);
         imageView15 = (ImageView) findViewById(R.id.imageView15);
 
         bil1 = (TextView) findViewById(R.id.bil1);
@@ -197,141 +224,246 @@ public class KitchenActivity extends AppCompatActivity {
             }
         });
 
-        ice_icon.setOnClickListener(new View.OnClickListener() {
+        icon0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
 
                 final Drawable drawable = res.getDrawable(R.drawable.ice_on);
                 selectIng.setImageDrawable(drawable);
+                if (selectIng != null) {
+                    icon0.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            selectIng2.setVisibility(View.VISIBLE);
+                            selectIng2.setImageDrawable(drawable);
+                        }
+                    });
+
+                }
             }
         });
 
-        coffee_icon.setOnClickListener(new View.OnClickListener() {
+        icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
 
                 final Drawable drawable = res.getDrawable(R.drawable.coffee_on);
                 selectIng.setImageDrawable(drawable);
+
+                icon1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (selectIng != null) {
+                            selectIng2.setVisibility(View.VISIBLE);
+                            selectIng2.setImageDrawable(drawable);
+                        }
+                    }
+                });
             }
         });
-        vanil_icon.setOnClickListener(new View.OnClickListener() {
+        icon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
 
                 final Drawable drawable = res.getDrawable(R.drawable.vanil_on);
                 selectIng.setImageDrawable(drawable);
+
+                icon2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (selectIng != null) {
+                            selectIng2.setVisibility(View.VISIBLE);
+                            selectIng2.setImageDrawable(drawable);
+                        }
+                    }
+                });
             }
         });
-        choco_icon.setOnClickListener(new View.OnClickListener() {
+        icon3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
 
                 final Drawable drawable = res.getDrawable(R.drawable.choco_on);
                 selectIng.setImageDrawable(drawable);
+                icon3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (selectIng != null) {
+                            selectIng2.setVisibility(View.VISIBLE);
+                            selectIng2.setImageDrawable(drawable);
+                        }
+                    }
+                });
+
             }
         });
-        straw_icon.setOnClickListener(new View.OnClickListener() {
+        icon4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
 
                 final Drawable drawable = res.getDrawable(R.drawable.straw_on);
                 selectIng.setImageDrawable(drawable);
+                icon4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (selectIng != null) {
+                            selectIng2.setVisibility(View.VISIBLE);
+                            selectIng2.setImageDrawable(drawable);
+                        }
+                    }
+                });
             }
         });
-        banana_icon.setOnClickListener(new View.OnClickListener() {
+        icon5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
 
                 final Drawable drawable = res.getDrawable(R.drawable.banana_on);
                 selectIng.setImageDrawable(drawable);
-            }
-        });
-        mash_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                icon5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (selectIng != null) {
+                            selectIng2.setVisibility(View.VISIBLE);
+                            selectIng2.setImageDrawable(drawable);
+                        }
+                    }
+                });
 
-                Toast.makeText(KitchenActivity.this, "이 재료는 사용할 수 없어요", Toast.LENGTH_SHORT ).show();
-            }
-        });
+                icon6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-        toff_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        Toast.makeText(KitchenActivity.this, "이 재료는 사용할 수 없어요", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                Toast.makeText(KitchenActivity.this, "이 재료는 사용할 수 없어요", Toast.LENGTH_SHORT ).show();
-            }
-        });
+                icon7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-        mouse_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        Toast.makeText(KitchenActivity.this, "이 재료는 사용할 수 없어요", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                Toast.makeText(KitchenActivity.this, "이 재료는 사용할 수 없어요", Toast.LENGTH_SHORT ).show();
-            }
-        });
-        blender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Resources res = getResources();
+                icon8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                final Drawable drawable = res.getDrawable(R.drawable.blender_on);
-                selectBlen.setImageDrawable(drawable);
-            }
-        });
+                        Toast.makeText(KitchenActivity.this, "이 재료는 사용할 수 없어요", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                blender.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Resources res = getResources();
 
-        trash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectCup.setImageDrawable(null);
-                selectWM.setImageDrawable(null);
-                selectIng.setImageDrawable(null);
-                selectBlen.setImageDrawable(null);
-            }
-        });
+                        final Drawable drawable = res.getDrawable(R.drawable.blender_on);
+                        selectBlen.setImageDrawable(drawable);
+                    }
+                });
 
-        recipeBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                trash.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selectCup.setImageDrawable(null);
+                        selectWM.setImageDrawable(null);
+                        selectIng.setImageDrawable(null);
+                        selectIng2.setImageDrawable(null);
+                        selectIng2.setVisibility(View.GONE);
+                        selectBlen.setImageDrawable(null);
+                    }
+                });
+
+                recipeBook.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
                         Intent intent = new Intent(KitchenActivity.this, RecipebookActivity.class);
                         startActivity(intent);
+                    }
+                });
+
+                btnMake.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // 제조 성공하면
+                        //Intent intent = new Intent(KitchenActivity.this, MakesuccessActivity.class);
+                        //startActivity(intent);
+
+                        ktimer.cancel();
+                        Dialog dialog = new Dialog(KitchenActivity.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.activity_makesuccess);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                        dialog.show();
+
+                        Display display = getWindowManager().getDefaultDisplay();
+                        Point size = new Point();
+                        display.getSize(size);
+
+                        Window window = dialog.getWindow();
+
+                        int x = (int) (size.x * 0.5f);
+                        int y = (int) (size.y * 0.7f);
+
+                        window.setLayout(x, y);
+                        // 제조 실패하면
+
+                    }
+                });
+
+
             }
         });
 
-        btnMake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 제조 성공하면
-                Intent intent = new Intent(KitchenActivity.this, MakesuccessActivity.class);
-                startActivity(intent);
-                // 제조 실패하면
-
-            }
-        });
+//        switch (countclass.peopleCount) {
+//
+//            case 10:
+//                Intent intent1 = new Intent(KitchenActivity.this, DayActivity.class);
+//                startActivity(intent1);
+//                finish();
+//                break;
+//            case 5:
+//                Intent intent2 = new Intent(KitchenActivity.this, DayActivity.class);
+//                startActivity(intent2);
+//                finish();
+//                break;
+//
+//            case 15:
+//                Intent intent3 = new Intent(KitchenActivity.this, DayActivity.class);
+//                startActivity(intent3);
+//                finish();
+//                break;
+//        }
     }
 
-    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
-        AnimThread thread = new AnimThread();
+        final AnimThread thread = new AnimThread();
         thread.start();
+        ktimer.start();
     }
 
     class AnimThread extends Thread {
-        public void run(){
+        public void run() {
 
             int index = 0;
 
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10; i++) {
                 final Drawable drawable;
                 drawable = drawables.get(index);
                 index += 1;
@@ -345,27 +477,13 @@ public class KitchenActivity extends AppCompatActivity {
                     }
                 });
                 try {
-                /*
-                    while(!AnimThread.currentThread().isInterrupted()){
-                        runOnUiThread(new Runnable() {
-                            public void run(){}
-                        });
-                        SystemClock.sleep(100000000);
-                    }
-                 */
-
-                    Thread.sleep(1500);
-                } catch (InterruptedException e){
+                    Thread.sleep(2900);
+                } catch (InterruptedException e) {
                     e.printStackTrace();
-                    //AnimThread.interrupt();
-                    //Intent end2 = new Intent(KitchenActivity.this, KitchenTimeover.class);
-                    //startActivity(end2);
+
                 }
-                //handler.sendEmptyMessage(0);
             }
+            finish();
         }
     }
-
-
-
 }

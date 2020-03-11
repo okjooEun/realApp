@@ -1,9 +1,13 @@
 package com.example.dbtest;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -11,13 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MakesuccessActivity extends AppCompatActivity {
 
-    RelativeLayout rel;
+    LinearLayout rel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_makesuccess);
 
+        getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
 
@@ -33,7 +38,9 @@ public class MakesuccessActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOption);
         //소프트키(네비게이션바) 없애기 끝
 
-        rel = (RelativeLayout) findViewById(R.id.rel);
+        int x = (int)200;
+        int y = (int)200;
+        rel = (LinearLayout) findViewById(R.id.rel);
 
         rel.setOnClickListener(new View.OnClickListener() {
             @Override

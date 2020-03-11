@@ -1,17 +1,16 @@
 package com.example.dbtest;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -19,21 +18,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
+    //카운터 답변 제한 시간 15초
+    private static final long START_TIME = 150000;
+    private boolean mTimeRunning;
+    private CountDownTimer timer, timer2;
+    private long mTimeLeft = START_TIME;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -58,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         backPressCloseHandler = new BackPressCloseHandler(this);
+
+        final CountClass countclass = (CountClass) getApplicationContext();
 
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
@@ -115,12 +114,70 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent);
                 finish();
+
             }
+
+            private void startTimer() {
+                timer2 = new CountDownTimer(mTimeLeft, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        mTimeLeft = millisUntilFinished;
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mTimeRunning = false;
+                    }
+                }.start();
+                mTimeRunning = true;
+            }
+
+            private void pauseTimer(){
+                timer2.cancel();
+                mTimeRunning = false;
+            }
+
         });
 
-//        String imgName = "guest" + r;
-//        Resources res = getResources();
-//        int id = res.getIdentifier(imgName, "drawable", getPackageName());
+        class MAnimThread extends Thread{
+            public void run(){
+                int index = 0 ;
+                for(int i =0; i<10; i++){
+                    final Drawable drawable3 = drawables.get(index);
+                    index +=1;
+                    if(index >=6){
+                        index = 0;
+                    }
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView16.setImageDrawable(drawable3);
+                        }
+                    });
+                    try{Thread.sleep(2900);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        timer = new CountDownTimer(15*1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                //엔딩 화면 바꿔야함
+                Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        };
 
         int r = rand.nextInt(blackarray.length);
         int i = rand.nextInt(1);
@@ -142,6 +199,8 @@ public class MainActivity extends AppCompatActivity {
                             goKitchen.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    countclass.peopleCount++;
+
                                     Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
                                     intent.putExtra("bil1", "아이스아메리카노 \nX 1");
                                     startActivity(intent);
@@ -187,9 +246,7 @@ public class MainActivity extends AppCompatActivity {
                             frame.setClickable(false);
                             frame.setBackground(null);
 
-                            WorkObject sharedObject = new WorkObject();
-                            AnimThread1 thread = new AnimThread1(sharedObject);
-                            thread.start();
+                            timer.start();
 
 
                         }
@@ -205,6 +262,10 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect1.setText("손님, 아이가 손으로 케잌을 만져서 판매가 어려워서\n이 케익까지 구매 해 주실 수 있을까요?");
                         btnSelect2.setText("(못 본 척 한다.)");
                         btnSelect3.setText("얘! 그걸 만지면 어떡하니!");
+
+                        final MAnimThread thread = new MAnimThread();
+                        thread.start();
+
                         btnSelect1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -217,10 +278,12 @@ public class MainActivity extends AppCompatActivity {
                                 frame.setClickable(true);
                                 frame.setBackground(drawable);
                                 databaseReference.setValue("1");
+                                timer.cancel();
 
                                 goKitchen.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        timer.cancel();
                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
                                         intent.putExtra("bil1", "아이스 바닐라라떼 \nX 1");
                                         intent.putExtra("bil2", "핫 아메리카노 \nX 2");
@@ -238,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                timer.cancel();
                                 linBtn.setVisibility(View.INVISIBLE);
                                 txtTalk2.setVisibility(View.VISIBLE);
                                 txtTalk2.setText("(양심에 찔리지만 넘어갔다.)");
@@ -263,6 +327,7 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                timer.cancel();
                                 Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -279,9 +344,14 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect1.setText("제가 궁예인 줄 아십니까?");
                         btnSelect2.setText("죄송하지만 제가 기억이 안 나는데, 메뉴를 정확히 골라 주시겠어요?");
                         btnSelect3.setText("네? 아메리카노?");
+
+                        final MAnimThread thread = new MAnimThread();
+                        thread.start();
+
                         btnSelect1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                timer.cancel();
                                 Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -293,6 +363,7 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                timer.cancel();
                                 linBtn.setVisibility(View.INVISIBLE);
                                 txtTalk2.setVisibility(View.VISIBLE);
                                 txtTalk2.setText("따뜻한 바닐라라떼 1잔 주세요...");
@@ -303,6 +374,7 @@ public class MainActivity extends AppCompatActivity {
                                 goKitchen.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+
                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
                                         intent.putExtra("bil1", "핫 바닐라라떼 \nX 1");
                                         startActivity(intent);
@@ -315,6 +387,7 @@ public class MainActivity extends AppCompatActivity {
                         btnSelect3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                timer.cancel();
                                 linBtn.setVisibility(View.INVISIBLE);
                                 txtTalk2.setVisibility(View.VISIBLE);
                                 txtTalk2.setText("아니 아니, 그거 말고 다른거 시켰잖아요");
@@ -373,6 +446,7 @@ public class MainActivity extends AppCompatActivity {
                                                                                 goKitchen.setOnClickListener(new View.OnClickListener() {
                                                                                     @Override
                                                                                     public void onClick(View v) {
+                                                                                        timer.cancel();
                                                                                         Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
                                                                                         intent.putExtra("bil1", "핫 \n바닐라라떼 X 1");
                                                                                         startActivity(intent);
@@ -405,88 +479,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class WorkObject { // 공유 객체 클래스
-        public synchronized void AnimThread1() {
-            System.out.println("AnimThread1의 methodA() 작업 실행");
-            notify(); // 일시 정지 상태에 있는 ThreadB를 실행 대기 상태로 전환
-            try {
-                wait(); // ThreadA를 일시 정지 상태로 전환
-            } catch (InterruptedException e) {
+    // 뒤로가기 눌렀을 때
+    @Override public void onBackPressed() { //backPressCloseHandler.onBackPressed();
+
+        AlertDialog.Builder dia = new AlertDialog.Builder(this);
+        dia.setTitle("종료");
+        dia.setMessage("정말 종료하시겠습니까?");
+        dia.setIcon(R.drawable.icon1).setPositiveButton("네", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
             }
-        }
+        });
+        dia.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-        public synchronized void methodB() {
-            System.out.println("ThreadB의 methodB() 작업 실행");
-            notify(); // 일시 정지 상태에 있는 ThreadA를 실행 대기 상태로 전환
-            try {
-                wait(); // ThreadB를 일시 정지 상태로 전환
-            } catch (InterruptedException e) {
             }
-        }
-    }
-
-
-    class AnimThread1 extends Thread {
-        private WorkObject workObject;
-
-        public AnimThread1(WorkObject workObject) {
-            this.workObject = workObject; //공유객체 저장
-        }
-
-        public void run() {
-            int index = 0;
-            for (int i = 0; i < 100; i++) {
-                final Drawable drawable = drawables.get(index);
-                index += 1;
-                if (index >= 6) {
-                    index = 0;
-                    // Intent intent = new Intent(MainActivity.this, WrongEndingActivity.class);
-                    // startActivity(intent);
-
-
-                }
-                /*
-                else if(index >= 7 )
-                {
-                    break;
-                }
-                 */
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageView16.setImageDrawable(drawable);
-                    }
-                });
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    workObject.AnimThread1();
-                }
-            }
-
-        }
-    }
-
-    class ThreadB extends Thread {
-        private WorkObject workObject;
-
-        public ThreadB(WorkObject workObject) {
-            this.workObject = workObject;
-        }
-
-        @Override
-        public void run() {
-            for (int i = 0; i < 5; i++) {
-                workObject.methodB();
-            }
-        }
-
-        public void onBackPressed() {
-
-            backPressCloseHandler.onBackPressed();
-        }
-
+        });
+        dia.show();
     }
 }
 

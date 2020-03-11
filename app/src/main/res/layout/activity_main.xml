@@ -38,6 +38,18 @@
                 android:textStyle="bold"
                 />
 
+            <DigitalClock
+                android:id="@+id/clock"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:fontFamily="@font/pfstardust"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="23dp"
+               />
+
             <ImageView
                 android:id="@+id/setting"
                 android:layout_width="50dp"

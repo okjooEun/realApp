@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name ="prolog">
+        <item>@drawable/pro1</item>
+        <item>@drawable/pro2</item>
+        <item>@drawable/pro3</item>
+        <item>@drawable/pro4</item>
+        <item>@drawable/pro5</item>
+        <item>@drawable/pro6</item>
+        <item>@drawable/pro7</item>
+        <item>@drawable/pro8</item>
+        <item>@drawable/pro9</item>
+    </array>
+</resources>

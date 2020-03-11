@@ -1,7 +1,8 @@
 package com.example.dbtest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -61,5 +62,24 @@ public class NewMenuActivity extends AppCompatActivity{
         });
     }
 
-    @Override public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
+  // 뒤로가기 눌렀을 때
+    @Override public void onBackPressed() { //backPressCloseHandler.onBackPressed();
+
+        AlertDialog.Builder dia = new AlertDialog.Builder(this);
+        dia.setTitle("종료");
+        dia.setMessage("정말 종료하시겠습니까?");
+        dia.setIcon(R.drawable.icon1).setPositiveButton("네", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        dia.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dia.show();
     }
+}

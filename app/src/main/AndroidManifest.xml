@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
+        android:name=".CountClass"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +20,7 @@
         <activity android:name=".menuDBActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".MakesuccessActivity"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.MyDialog"
             android:screenOrientation="landscape"/>
         <activity android:name=".DayActivity"
             android:screenOrientation="landscape">
@@ -35,22 +36,26 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingActivity"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.MyDialog"
             android:screenOrientation="landscape"/>
         <activity android:name=".RecipebookActivity"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.MyDialog"
             android:screenOrientation="landscape"/>
         <activity android:name=".WrongEndingActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".RecipebookActivity1"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.MyDialog"
             android:screenOrientation="landscape"/>
         <activity android:name=".RecipebookActivity2"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.MyDialog"
             android:screenOrientation="landscape"/>
-        <activity android:name=".HelpActivity"
-            android:screenOrientation="landscape" />
-
+       <activity android:name=".HelpActivity"
+           android:screenOrientation="landscape"/>
+        <activity android:name=".PrologueActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".TutoActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

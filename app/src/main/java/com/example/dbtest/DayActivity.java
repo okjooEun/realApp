@@ -1,5 +1,7 @@
 package com.example.dbtest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +26,8 @@ public class DayActivity extends AppCompatActivity {
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 
+        CountClass countclass = (CountClass) getApplication();
+
         //소프트키(네비게이션바) 없애기 시작
         View decorView = getWindow().getDecorView();
 
@@ -43,17 +47,22 @@ public class DayActivity extends AppCompatActivity {
         textView3 =(TextView)findViewById(R.id.textView3);
         setting =(ImageView) findViewById(R.id.setting);
 
-        int count = 0;
 
-        switch (count){
-            case 0:
-                textView3.setText("4일차");
-                count++;
+        switch (countclass.dayCount){
+            case 1:
+                textView3.setText("1일차");
                 break;
 
-            case 1:
-                Intent intent = getIntent();
-                textView3.setText(intent.getStringExtra("day"));
+            case 2:
+                textView3.setText("2일차");
+                break;
+
+            case 3:
+                textView3.setText("3일차");
+                break;
+
+            case 4:
+                textView3.setText("4일차");
                 break;
         }
 
@@ -75,8 +84,25 @@ public class DayActivity extends AppCompatActivity {
         });
     }
 
-    @Override public void onBackPressed()
-    { //super.onBackPressed();
-         backPressCloseHandler.onBackPressed(); }
+  // 뒤로가기 눌렀을 때
+    @Override public void onBackPressed() { //backPressCloseHandler.onBackPressed();
 
+        AlertDialog.Builder dia = new AlertDialog.Builder(this);
+        dia.setTitle("종료");
+        dia.setMessage("정말 종료하시겠습니까?");
+        dia.setIcon(R.drawable.icon1).setPositiveButton("네", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        dia.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dia.show();
     }
+}
+
