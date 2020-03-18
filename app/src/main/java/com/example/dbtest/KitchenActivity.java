@@ -11,9 +11,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -393,28 +395,43 @@ public class KitchenActivity extends AppCompatActivity {
                 btnMake.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                         LoadingDialog loadingDialog;
+
+                        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics(); //디바이스 화면크기를 구하기위해
+                        int width = dm.widthPixels; //디바이스 화면 너비
+                        int height = dm.heightPixels; //디바이스 화면 높이
+
+                        //로딩이미지 gif 형식
+                        loadingDialog = new LoadingDialog(getApplicationContext());
+                        WindowManager.LayoutParams wm = loadingDialog.getWindow().getAttributes();  //다이얼로그의 높이 너비 설정하기위해
+                        wm.copyFrom(loadingDialog.getWindow().getAttributes());  //여기서 설정한값을 그대로 다이얼로그에 넣겠다는의미
+                        wm.width = (int)(width *0.5);  //화면 너비의 절반
+                        wm.height = (int)(height *0.5);
+                        loadingDialog.show();
+
                         // 제조 성공하면
                         //Intent intent = new Intent(KitchenActivity.this, MakesuccessActivity.class);
                         //startActivity(intent);
-
                         ktimer.cancel();
-                        Dialog dialog = new Dialog(KitchenActivity.this);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.activity_makesuccess);
-                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                        dialog.show();
-
-                        Display display = getWindowManager().getDefaultDisplay();
-                        Point size = new Point();
-                        display.getSize(size);
-
-                        Window window = dialog.getWindow();
-
-                        int x = (int) (size.x * 0.5f);
-                        int y = (int) (size.y * 0.7f);
-
-                        window.setLayout(x, y);
-                        // 제조 실패하면
+//                        Dialog dialog = new Dialog(KitchenActivity.this);
+//                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                       // makesuccessActivity = new MakesuccessActivity(getApplicationContext());
+//                        dialog.setContentView(R.layout.activity_makesuccess);
+//                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                        dialog.show();
+//
+//                        Display display = getWindowManager().getDefaultDisplay();
+//                        Point size = new Point();
+//                        display.getSize(size);
+//
+//                        Window window = dialog.getWindow();
+//
+//                        int x = (int) (size.x * 0.5f);
+//                        int y = (int) (size.y * 0.7f);
+//
+//                        window.setLayout(x, y);
+//                        // 제조 실패하면
+//
 
                     }
                 });

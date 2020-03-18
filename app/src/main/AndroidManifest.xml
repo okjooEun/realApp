@@ -56,6 +56,7 @@
         </activity>
         <activity android:name=".TutoActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".LoadingDialog"/>
     </application>
 
 </manifest>
